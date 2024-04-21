@@ -25,7 +25,7 @@
 
 
     <label for="movement">movement:</label>
-    <select id="movement" th:field="*{movement.movementId}">
+    <select id="movement" th:field="*{movement.movementId}" required>
         <option th:each="movement : ${movements}" th:value="${movement.movementId}" th:text="${movement.name}"></option>
     </select>
 

@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Training {
@@ -18,9 +19,14 @@ public class Training {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "Level is required")
     private String level;
+    @NotBlank(message = "Coach name is required")
     private String coach;
-    @Column(name = "time" , nullable=false)
+
+    @NotBlank(message = "Time is required")
+    @Column(nullable = false)
     private String time;
     
 

@@ -5,12 +5,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import io.micrometer.common.lang.NonNull;
+import jakarta.validation.Valid;
 import pt1.domain.MovementRepository;
 import pt1.domain.Training;
 import pt1.domain.TrainingRepository;
@@ -42,7 +44,12 @@ public class TrainingController {
 
    
     @PostMapping("/addtraining")
-    public String addTraining(@ModelAttribute Training newTraining) {
+    public String addTraining(@Valid @ModelAttribute Training newTraining, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("movements", movementRepository.findAll());
+            return "addtraining";
+        }
+
         trainingRepository.save(newTraining);
         return "redirect:/traininglist";
     }
@@ -67,7 +74,11 @@ public class TrainingController {
     }
 
     @PostMapping("/updatetraining")
-    public String updateTraining(@ModelAttribute @NonNull Training updatedTraining) {
+    public String updateTraining(@Valid @ModelAttribute @NonNull Training updatedTraining, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("movements", movementRepository.findAll());
+            return "edittraining";
+        }        
         trainingRepository.save(updatedTraining);
         return "redirect:/traininglist";
     }

@@ -35,14 +35,14 @@ public class TrainingRestController {
         private TrainingRepository trainingRepository;
     
         @RequestMapping(value="/trainings", method = RequestMethod.GET)
-        public @ResponseBody List<Training> getBooksRest() {
+        public @ResponseBody List<Training> getTrainingsRest() {
             return (List<Training>) trainingRepository.findAll();
         }
     
         
         @RequestMapping(value="/trainings/{id}", method = RequestMethod.GET)
-        public @ResponseBody Optional<Training> getBookByIdRest(@PathVariable("id") Long bookId) {
-            return trainingRepository.findById(bookId);
+        public @ResponseBody Optional<Training> getTrainingByIdRest(@PathVariable("id") Long trainingId) {
+            return trainingRepository.findById(trainingId);
         }
         
         @RequestMapping(value="/trainings", method = RequestMethod.POST)
