@@ -17,13 +17,14 @@ public class WebSecurityConfig {
     @Autowired
     private UserDetailsService userDetailService;
 
+    //verkkoohjain
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable());
+        http.csrf(csrf -> csrf.disable());//poistaa csrf suojauksen
         
-        http.cors(cors -> cors.disable())
+        http.cors(cors -> cors.disable())//poistaa cors suojauksen
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/api/trainings/**").permitAll() // Allow access to all endpoints under "/trainings" without authentication
+                .requestMatchers("/api/trainings/**").permitAll() // mahdollistaa kaikkien trainingsien hakemisen
                 .requestMatchers("/login").permitAll()
                 .anyRequest().authenticated())
             .formLogin(formlogin -> formlogin

@@ -18,8 +18,10 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+
 	@Bean
-	public CommandLineRunner initData(TrainingRepository trainingRepository, MovementRepository movementRepository, UserRepository userRepository) {
+	public CommandLineRunner initData(TrainingRepository trainingRepository, MovementRepository movementRepository,
+			UserRepository userRepository) {
 		return (args) -> {
 
 			// ajaa liiketietokantaan
@@ -29,6 +31,7 @@ public class Application {
 			Movement benchpress = new Movement("Benchpres");
 			Movement dumbbell = new Movement("Dumbbell");
 
+			// talleentaa tiedot repoon
 			movementRepository.save(pullup);
 			movementRepository.save(situp);
 			movementRepository.save(benchpress);
@@ -39,14 +42,16 @@ public class Application {
 			Training a = new Training("kevyt", "jukka", "20min", dumbbell);
 			Training b = new Training("rankka", "jukka", "20min", benchpress);
 
+			// talleentaa tiedot repoon
 			trainingRepository.save(a);
 			trainingRepository.save(b);
 
 			// ajaa käyttäjätietokantaan
 
-			User user1 = new User("user","$2a$10$lUD01taj9kl.VQo1LaUqNOds/4gMn3PYEXC4ymukKFOLqWlxGoG3a", "USER");
-			User user2 = new User("admin","$2a$10$SxLPHuXQMZt//Otx9tv6VukJjb8.vKyOVgTpGBmoCGWAmv8pNqHG6","ADMIN");
+			User user1 = new User("user", "$2a$10$lUD01taj9kl.VQo1LaUqNOds/4gMn3PYEXC4ymukKFOLqWlxGoG3a", "USER");
+			User user2 = new User("admin", "$2a$10$SxLPHuXQMZt//Otx9tv6VukJjb8.vKyOVgTpGBmoCGWAmv8pNqHG6", "ADMIN");
 
+			// talleentaa tiedot repoon
 			userRepository.save(user1);
 			userRepository.save(user2);
 
