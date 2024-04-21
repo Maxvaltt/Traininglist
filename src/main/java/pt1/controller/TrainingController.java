@@ -3,6 +3,7 @@ package pt1.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -55,13 +56,14 @@ public class TrainingController {
     }
 
     @GetMapping("/deletetraining/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteTraining(@PathVariable Long id) {
         trainingRepository.deleteById(id);
         return "redirect:/traininglist";
     }
 
     @GetMapping("/edittraining/{id}")
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String showEditTrainingForm(@PathVariable Long id, Model model) {
         Optional<Training> optionalTraining = trainingRepository.findById(id);
         if (optionalTraining.isPresent()) {

@@ -5,7 +5,7 @@
     <title>Trainingcenter</title>
   </head>
   <body>
-    <h1>Traininglist</h1>
+    <h1>Training list</h1>
     <h1>Hello <span sec:authentication="name"></span>!</h1>
     <table border="1">
       <thead>
@@ -25,17 +25,18 @@
           <td th:text="${training.movement.name}"></td>
           
 
-          <td><a th:href="@{'/deletetraining/' + ${training.id}}">Delete</a></td>
-          <td><a th:href="@{'/edittraining/' + ${training.id}}">Edit</a></td>
+          <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{'/deletetraining/' + ${training.id}}">Delete</a></td>
+          <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{'/edittraining/' + ${training.id}}">Edit</a></td>
             
           
         </tr>   
       </tbody>
     </table>
-    <td><a href="/addtraining">add training</a></td>
-    <a href="/movementlist">To movements</a>
-
-      
+    <td sec:authorize="hasAuthority('ADMIN')"><a href="/addtraining">add training</a></td>
+    <td><a href="/movementlist">To movements</a></td>
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+     </form>
      </form>
   </body>
 </html>

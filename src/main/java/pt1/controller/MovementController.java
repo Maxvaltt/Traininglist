@@ -32,7 +32,7 @@ public class MovementController {
             return "movementlist";
         }
         @GetMapping("/addmovement")
-        public String showmovemntForm(Model model) {
+        public String showmovementForm(Model model) {
             model.addAttribute("movement", new Movement());
             return "addmovement";
         }

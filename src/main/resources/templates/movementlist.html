@@ -18,7 +18,7 @@
             </tr>
         </tbody>
     </table>
-    <a href="/addmovement">Add Movement</a>
+    <td sec:authorize="hasAuthority('ADMIN')"><a href="/addmovement">Add Movement</a></td>
 
     <a href="/traininglist">To Training List</a>
 </body>

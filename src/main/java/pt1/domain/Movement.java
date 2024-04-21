@@ -12,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Movement {
@@ -21,6 +23,8 @@ public class Movement {
     @Column(name = "movement_id")
     private Long movementId;
 
+    @NotBlank(message = "Name is required")
+    @Size(max = 255, message = "Name must be less than 255 characters")
     private String name;
 
     @OneToMany(mappedBy = "movement")
