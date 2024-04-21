@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movement List</title>
+</head>
+<body>
+    <h2>Movement List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="movement : ${movements}">
+                <td th:text="${movement.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/addmovement">Add Movement</a>
+
+    <a href="/traininglist">To Trainings</a>
+</body>
+</html>

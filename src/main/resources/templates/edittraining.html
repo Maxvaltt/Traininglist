@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Edit Training</title>
+</head>
+<body>
+<h2>Edit Training</h2>
+
+<form th:action="@{/updatetraining}" th:object="${training}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label for="level">level:</label>
+    <input type="text" id="author" th:field="*{level}" required />
+    <br />
+
+    <label for="year">time:</label>
+    <input type="text" id="time" th:field="*{time}" required />
+    <br />
+
+    <label for="isbn">Coach:</label>
+    <input type="text" id="coach" th:field="*{coach}" required />
+    <br />
+
+
+    <label for="movement">movement:</label>
+    <select id="movement" th:field="*{movement.movementId}">
+        <option th:each="movement : ${movements}" th:value="${movement.movementId}" th:text="${movement.name}"></option>
+    </select>
+
+
+    <button type="submit">Edit training</button>
+</form>
+
+<a href="/traininglist">Back to TrainingList</a>
+</body>
+</html>
